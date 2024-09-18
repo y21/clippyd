@@ -11,6 +11,7 @@ All commands must be run from within the clippy directory (though this is also c
 ### Features
 - [`clippyd checkout user:branch`](#checkout)
 - [`clippyd profile path/to/project`](#profile)
+- [`clippyd command path/to/project dev|release`](#command)
 
 
 ### Checkout
@@ -45,3 +46,9 @@ $ perf report
  3.75%      rustc          libc.so.6               [.] _int_malloc
 ```
 </details>
+
+### Command
+Prints the finalized clippy-driver command for linting a specified crate. This has all the extern dependencies included in the command.
+
+This can be used in combination with many other tools: `clippyd profile path` could be a shortcut for `perf record $(clippyd command path)`.
+This is also useful for debugging crashes with no stacktrace, as you can directly run clippy-driver under gdb with this.
